@@ -1,8 +1,8 @@
 {
-  "name": "ProFitOro",
+  "name": "CinemApp",
   "version": "1.0.0",
-  "description": "Take breaks during work. Exercise during breaks.",
-  "author": "Olga Filipova <chudaol@gmail.com>",
+  "description": "cinema App to practice with vue.",
+  "author": "Guillermo Morillo <gmmviking@gmail.com>",
   "private": true,
   "dependencies": {
     "moment": "^2.18.1",

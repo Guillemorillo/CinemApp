@@ -1,6 +1,6 @@
-# Profitoro
+# CinemApp
 
-> Take breaks during work. Exercise during breaks.
+> Cinema app to practice with vue
 
 ## Build Setup
 
@@ -23,4 +23,4 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 
 ## Licensing
 
-ProFitOro is licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for the full license text.
+CinemApp is licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for the full license text.

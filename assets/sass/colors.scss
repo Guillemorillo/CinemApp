@@ -1,0 +1,10 @@
+$redColor: #a85122;
+$redTitle: #89563a;
+$blueColor: #2c3e50;
+$darkBlue: #38393a;
+$whiteColor: #fff;
+/* EXTEND EXAMPLE: @extend .flexWrap; */
+.flexWrap {
+  display:flex;
+  flex-wrap:wrap;
+}
