@@ -12,15 +12,22 @@
     <div class="enter">
       <button class="enter-button">Entrar</button>
     </div>
+    <div>
+      <external-log-in-component></external-log-in-component>
+    </div>
   </div>
 </template>
 <script>
+import ExternalLogInComponent from '~/components/landing/ExternalLogInComponent'
 export default {
   data () {
     return {
       email: '',
       password: ''
     }
+  },
+  components: {
+    ExternalLogInComponent
   }
 }
 </script>
@@ -42,6 +49,9 @@ export default {
     background: none;
     color: white;
     border-bottom: solid 1px white;
+  }
+  ::placeholder {
+    color: white;
   }
   .ico {
     font-size: 3em;

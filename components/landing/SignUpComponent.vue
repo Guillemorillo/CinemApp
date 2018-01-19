@@ -46,6 +46,9 @@ export default {
     color: white;
     border-bottom: solid 1px white;
   }
+  ::placeholder {
+    color: white;
+  }
   .ico {
     font-size: 3em;
   }
