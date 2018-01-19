@@ -4,10 +4,10 @@
       <nuxt-link to="/">Inicio</nuxt-link>
     </div>
     <div class="social">
-      <a href="https://facebook.com/" target="_blank">Facebook</a>
-      <a href="https://instagram.com/" target="_blank">Instagram</a>
-      <a href="https://twitter.com/" target="_blank">twitter</a>
-      <a href="https://googleplus.com/ " target="_blank">G+</i></a>
+      <a href="https://facebook.com/" target="_blank"><i class="fa fa-facebook-square"></i></a>
+      <a href="https://instagram.com/" target="_blank"><i class="fa fa-instagram"></i></a>
+      <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter-square"></i></a>
+      <a href="https://googleplus.com/" target="_blank"><i class="fa fa-google-plus-square"></i></a>
     </div>
 </div>
 </template>
@@ -19,7 +19,7 @@
 @extend .flexWrap;
 background:$blueColor;
 width: 100%;
-padding:20px;
+padding:10px;
 font-size: 1rem;
 align-items: center;
 justify-content:space-around;
@@ -43,6 +43,7 @@ color:$whiteColor;
 text-decoration: none;
 padding:10px;
 display: inline-block;
+font-size: 1.5em;
 }
 
 @media screen and (min-width: 850px) {
