@@ -7,23 +7,37 @@
       <i class="material-icons ico">account_box</i><input class="input" type="text" v-model="nameUser" placeholder="Nombre de usuario">
     </div>
     <div>
-      <i class="material-icons ico">mail</i><input class="input" type="text" v-model="email" placeholder="Email">
+      <i class="material-icons ico">mail</i><input class="input" type="email" v-model="email" placeholder="Email">
     </div>
     <div>
-      <i class="material-icons ico">&#xE88D;</i><input class="input" type="text" v-model="password" placeholder="Password">
+      <i class="material-icons ico">&#xE88D;</i><input class="input" type="password" v-model="password" placeholder="Password">
     </div>
     <div class="enter">
-      <button class="enter-button">Registrar</button>
+      <button class="enter-button" @click="addUser">Registrar</button>
     </div>
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
       nameUser: '',
       email: '',
       password: ''
+    }
+  },
+  methods: {
+    ...mapActions(['createAuthUser']),
+    addUser () {
+      const newUser = {
+        nameUser: this.nameUser,
+        email: this.email,
+        password: this.password
+      }
+      let method = this.createAuthUser
+      method({email: this.email, password: this.password, newUser})
+      this.$router.push('/')
     }
   }
 }

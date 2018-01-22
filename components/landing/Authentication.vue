@@ -44,14 +44,16 @@ export default {
     justify-content: center;
     align-items: center;
     padding: 50px;
+    width: 100%;
+    min-height: 100vh;
   }
   .title {
     font-size: 3em;
-    margin-bottom:15x;
+    margin-bottom: 1em;
     padding: 10px;
   }
   .formulary {
-    padding: 20px;
+    padding: 1em;
     border: solid 3px white;
     border-radius: 30%
   }
@@ -63,5 +65,8 @@ export default {
     background: none;
     color: white;
     cursor: pointer;
+  }
+  @media screen and (min-width: 850px) {
+
   }
 </style>

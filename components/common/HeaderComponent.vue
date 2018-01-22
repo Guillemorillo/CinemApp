@@ -4,7 +4,7 @@
       <nuxt-link to="/" class="logomvl">CinemApp</nuxt-link>
     </div>
     <nav class="mvlnav">
-      <nuxt-link to="#menu" data-toggle="collapse" data-target="#menu" aria-expanded="false" aria-controls="menu">
+      <nuxt-link to="" data-toggle="collapse" data-target="#menu" aria-expanded="false" aria-controls="menu">
         <i class="material-icons ico">&#xe5d2;</i>
       </nuxt-link>
     </nav>
@@ -29,7 +29,7 @@
       <nuxt-link to="/" class="line">Inicio</nuxt-link>
       <nuxt-link to="/upload" class="line">Subir publicación</nuxt-link>
       <nav>
-        <nuxt-link to="#menuB" data-toggle="collapse" data-target="#menuB" aria-expanded="false" aria-controls="menu" class="line username">
+        <nuxt-link to="" data-toggle="collapse" data-target="#menuB" aria-expanded="false" aria-controls="menu" class="line username">
           <i class="material-icons ico">account_box</i><span >Nombre de usuario</span>
         </nuxt-link>
       </nav>

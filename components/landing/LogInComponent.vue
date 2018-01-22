@@ -7,7 +7,7 @@
       <i class="material-icons ico">mail</i><input class="input" type="text" v-model="email" placeholder="Email">
     </div>
     <div>
-      <i class="material-icons ico">&#xE88D;</i><input class="input" type="text" v-model="password" placeholder="Password">
+      <i class="material-icons ico">&#xE88D;</i><input class="input" type="password" v-model="password" placeholder="Password">
     </div>
     <div class="enter">
       <button class="enter-button">Entrar</button>

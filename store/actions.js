@@ -2,6 +2,15 @@ import firebaseApp from '~/firebaseapp'
 import { firebaseAction } from 'vuexfire'
 
 export default {
+  createAuthUser ({commit, dispatch}, {email, password, newUser}) {
+    firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(({uid}) => {
+      commit('setAuthError', '')
+      let db = firebaseApp.database()
+      db.ref('/users/' + uid).set(newUser)
+    }).catch(error => {
+      commit('setAuthError', error.message)
+    })
+  },
    /**
   * Binds firebase configuration database reference to the store's corresponding object
   * @param {object} store
