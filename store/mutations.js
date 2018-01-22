@@ -7,5 +7,8 @@ export default {
   },
   setDisplayName (state, value) {
     state.displayName = value
+  },
+  setMooviesRef (state, value) {
+    state.mooviesRef = value
   }
 }

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <button type="button" class="btn btn-info send">Login con Facebook</button> <!--  @click="loginWithFacebook" -->
-    <button type="button" class="btn btn-warning send" >Login con Google</button> <!-- @click="loginWithGoogle" -->
+    <button type="button" class="btn btn-info send" @click="loginWithFacebook">Login con Facebook</button>
+    <button type="button" class="btn btn-warning send" @click="loginWithGoogle">Login con Google</button>
   </div>
 </template>
 <script type="text/javascript">
-/* import firebaseApp from '~/firebaseapp'
+import firebaseApp from '~/firebaseapp'
 import firebase from 'firebase'
 export default {
   data () {
@@ -29,7 +29,7 @@ export default {
       this.error = error.message
     }
   }
-} */
+}
 </script> 
 <style scoped lang='scss'>
 .send {

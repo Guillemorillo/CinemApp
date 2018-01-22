@@ -59,10 +59,10 @@ export default {
   */
   bindFirebaseReferences: firebaseAction(({state, commit, dispatch}, user) => {
     let db = firebaseApp.database()
-    let configRef = db.ref('/moovies')
+    let mooviesRef = db.ref('/moovies')
 
-    dispatch('bindFirebaseReference', {reference: configRef, toBind: 'moovies'}).then(() => {
-      commit('setConfigRef', configRef)
+    dispatch('bindFirebaseReference', {reference: mooviesRef, toBind: 'moovies'}).then(() => {
+      commit('setMooviesRef', mooviesRef)
     })
   }),
     /**
@@ -82,7 +82,7 @@ export default {
   * Undbinds firebase references
   */
   unbindFirebaseReferences: firebaseAction(({unbindFirebaseRef, commit}) => {
-    commit('setConfigRef', null)
+    commit('setMooviesRef', null)
     try {
       unbindFirebaseRef('moovies')
     } catch (error) {
