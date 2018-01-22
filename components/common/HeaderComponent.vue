@@ -19,7 +19,7 @@
         <nuxt-link to="/upload">
           <li class="list-group-item ul-menu"><i class="material-icons icon-l">vertical_align_top</i>Subir publicación</li>
         </nuxt-link>
-        <li class="list-group-item ul-menu" @click="logout"><i class="material-icons icon-l">power_settings_new</i>Salir</li>
+        <li class="list-group-item ul-menu logout" @click="logout()"><i class="material-icons icon-l">power_settings_new</i>Salir</li>
       </ul>
     </div>
 
@@ -36,7 +36,7 @@
           <nuxt-link to="/profile">
             <li class="list-group-item ul-menu"><i class="material-icons icon-l">account_box</i>Perfil</li>
           </nuxt-link>
-          <li class="list-group-item ul-menu" @click="logout"><i class="material-icons icon-l">power_settings_new</i>Salir</li>>
+          <li class="list-group-item ul-menu logout" @click="logout()"><i class="material-icons icon-l">power_settings_new</i>Salir</li>
         </ul>
       </div>
     </div>
@@ -47,10 +47,7 @@
   import { mapActions } from 'vuex'
   export default {
     methods: {
-      ...mapActions(['logout']),
-      logout () {
-        this.logout()
-      }
+      ...mapActions(['logout'])
     }
   }
 
@@ -138,18 +135,13 @@ li .icon-l {
   background-color:#fff;
 }
 
-.ul-menu {
-  background-color:#fff;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-}
-
 .ul-menu a:hover{
   color: grey;
 
 }
-
+.logout {
+  cursor: pointer;
+}
 .ico {
   color: white;
 }

@@ -30,9 +30,8 @@ export default {
   * @param {object} store
   */
   logout ({state}, router) {
-    console.log('>')
     firebaseApp.auth().signOut()
-    this.$router.push('/login')
+    this.$router.push('/')
   },
   /**
    * Binds firebase auth listener to the auth changes to the callback that will set the store's user object
