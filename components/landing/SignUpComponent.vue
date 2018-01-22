@@ -30,13 +30,8 @@ export default {
   methods: {
     ...mapActions(['createAuthUser']),
     addUser () {
-      const newUser = {
-        displayName: this.displayName,
-        email: this.email,
-        password: this.password
-      }
       let method = this.createAuthUser
-      method({email: this.email, password: this.password, newUser})
+      method({email: this.email, password: this.password})
       this.$router.push('/')
     }
   }

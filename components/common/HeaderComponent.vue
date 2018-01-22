@@ -28,7 +28,7 @@
       <nuxt-link to="/upload" class="line">Subir publicación</nuxt-link>
       <nav>
         <nuxt-link to="" data-toggle="collapse" data-target="#menuB" aria-expanded="false" aria-controls="menu" class="line username">
-          <i class="material-icons ico">account_box</i><span >Nombre de usuario</span>
+          <i class="material-icons ico">account_box</i><span>{{ name }}</span>
         </nuxt-link>
       </nav>
       <div id="menuB" class="collapse menuAB">
@@ -44,8 +44,11 @@
 </template>
 
 <script type="text/javascript">
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
   export default {
+    computed: {
+      ...mapGetters({name: 'getDisplayName'})
+    },
     methods: {
       ...mapActions(['logout'])
     }

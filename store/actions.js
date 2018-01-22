@@ -2,11 +2,9 @@ import firebaseApp from '~/firebaseapp'
 import { firebaseAction } from 'vuexfire'
 
 export default {
-  createAuthUser ({commit, dispatch}, {email, password, newUser}) {
+  createAuthUser ({commit, dispatch}, {email, password}) {
     firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(({uid}) => {
       commit('setAuthError', '')
-      let db = firebaseApp.database()
-      db.ref('/users/' + uid).set(newUser)
     }).catch(error => {
       commit('setAuthError', error.message)
     })
