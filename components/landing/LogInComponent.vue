@@ -10,7 +10,7 @@
       <i class="material-icons ico">&#xE88D;</i><input class="input" type="password" v-model="password" placeholder="Password">
     </div>
     <div class="enter">
-      <button class="enter-button">Entrar</button>
+      <button class="enter-button" @click="login">Entrar</button>
     </div>
     <div>
       <external-log-in-component></external-log-in-component>
@@ -19,11 +19,20 @@
 </template>
 <script>
 import ExternalLogInComponent from '~/components/landing/ExternalLogInComponent'
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
       email: '',
       password: ''
+    }
+  },
+  methods: {
+    ...mapActions(['authenticate']),
+    login () {
+      let method = this.authenticate
+      method({email: this.email, password: this.password})
+      this.$router.push('/')
     }
   },
   components: {

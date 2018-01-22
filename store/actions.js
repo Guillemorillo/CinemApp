@@ -11,11 +11,54 @@ export default {
       commit('setAuthError', error.message)
     })
   },
+  authenticate ({state, commit}, {email, password}) {
+    firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
+      commit('setAuthError', '')
+    }).catch(err => {
+      commit('setAuthError', err.message)
+    })
+  },
+    /**
+   * Resets authentication error
+   * @param commit
+   */
+  resetAuthError ({commit}) {
+    commit('setAuthError', '')
+  },
+  /**
+  * Logouts the user from the application
+  * @param {object} store
+  */
+  logout ({state}, router) {
+    console.log('>')
+    firebaseApp.auth().signOut()
+    this.$router.push('/login')
+  },
+  /**
+   * Binds firebase auth listener to the auth changes to the callback that will set the store's user object
+   * @param {object} store
+   */
+  bindAuth ({commit, dispatch, state}) {
+    firebaseApp.auth().onAuthStateChanged(user => {
+      commit('setUser', user)
+      if (user) {
+        let displayName = user.displayName || user.email.split('@')[0]
+        if (!user.displayName) {
+          dispatch('updateUserName', displayName)
+        }
+        commit('setDisplayName', displayName)
+        dispatch('bindFirebaseReferences', user)
+      }
+      if (!user) {
+        dispatch('unbindFirebaseReferences')
+      }
+    })
+  },
    /**
   * Binds firebase configuration database reference to the store's corresponding object
   * @param {object} store
   */
-  bindFirebaseReferences: firebaseAction(({state, commit, dispatch}) => {
+  bindFirebaseReferences: firebaseAction(({state, commit, dispatch}, user) => {
     let db = firebaseApp.database()
     let configRef = db.ref('/moovies')
 

@@ -19,9 +19,7 @@
         <nuxt-link to="/upload">
           <li class="list-group-item ul-menu"><i class="material-icons icon-l">vertical_align_top</i>Subir publicación</li>
         </nuxt-link>
-        <nuxt-link to="/">
-          <li class="list-group-item ul-menu"><i class="material-icons icon-l">power_settings_new</i>Salir</li>
-        </nuxt-link>
+        <li class="list-group-item ul-menu" @click="logout"><i class="material-icons icon-l">power_settings_new</i>Salir</li>
       </ul>
     </div>
 
@@ -38,9 +36,7 @@
           <nuxt-link to="/profile">
             <li class="list-group-item ul-menu"><i class="material-icons icon-l">account_box</i>Perfil</li>
           </nuxt-link>
-          <nuxt-link to="/">
-            <li class="list-group-item ul-menu"><i class="material-icons icon-l">power_settings_new</i>Salir</li>
-          </nuxt-link>
+          <li class="list-group-item ul-menu" @click="logout"><i class="material-icons icon-l">power_settings_new</i>Salir</li>>
         </ul>
       </div>
     </div>
@@ -48,6 +44,15 @@
 </template>
 
 <script type="text/javascript">
+  import { mapActions } from 'vuex'
+  export default {
+    methods: {
+      ...mapActions(['logout']),
+      logout () {
+        this.logout()
+      }
+    }
+  }
 
 </script>
 <style scoped lang='scss'>
