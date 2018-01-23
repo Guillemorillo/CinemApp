@@ -2,9 +2,11 @@ import firebaseApp from '~/firebaseapp'
 import { firebaseAction } from 'vuexfire'
 
 export default {
-  createAuthUser ({commit, dispatch}, {email, password}) {
+  createAuthUser ({commit, dispatch}, {email, password, newUser}) {
     firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(({uid}) => {
       commit('setAuthError', '')
+      let db = firebaseApp.database()
+      db.ref('/users/' + uid).set(newUser)
     }).catch(error => {
       commit('setAuthError', error.message)
     })
@@ -50,6 +52,12 @@ export default {
         dispatch('unbindFirebaseReferences')
       }
     })
+  },
+  updateUserName ({state, commit}, displayName) {
+    state.user.updateProfile({
+      displayName
+    })
+    commit('setDisplayName', displayName)
   },
    /**
   * Binds firebase configuration database reference to the store's corresponding object
