@@ -52,11 +52,6 @@ export default {
     margin-bottom: 1em;
     padding: 10px;
   }
-  .formulary {
-    padding: 1em;
-    border: solid 3px white;
-    border-radius: 30%
-  }
   .buttons {
     margin-top: 15px;
   }
@@ -67,6 +62,10 @@ export default {
     cursor: pointer;
   }
   @media screen and (min-width: 850px) {
-
+  .formulary {
+    padding: 1em;
+    border: solid 3px white;
+    border-radius: 30%;
+  }
   }
 </style>

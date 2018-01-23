@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="basic-style">
     <header-component></header-component>
     profile
     <footer-component></footer-component>
@@ -17,3 +17,11 @@
     }
   }
 </script>
+<style>
+.basic-style {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+</style>

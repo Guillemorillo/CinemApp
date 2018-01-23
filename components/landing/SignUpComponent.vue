@@ -70,5 +70,6 @@ export default {
     color: $blueColor;
     border-radius: 20%;
     border: none;
+    cursor: pointer;
   }
 </style>

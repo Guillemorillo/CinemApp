@@ -4,10 +4,10 @@
       <h3>LogIn</h3>
     </div>
     <div>
-      <i class="material-icons ico">mail</i><input class="input" type="text" v-model="email" placeholder="Email">
+      <i class="material-icons ico">mail</i><input class="input" type="email" v-model="email" placeholder="Email" required>
     </div>
     <div>
-      <i class="material-icons ico">&#xE88D;</i><input class="input" type="password" v-model="password" placeholder="Password">
+      <i class="material-icons ico">&#xE88D;</i><input class="input" type="password" v-model="password" placeholder="Password" required>
     </div>
     <div class="enter">
       <button class="enter-button" @click="login">Entrar</button>
@@ -70,5 +70,6 @@ export default {
     color: $blueColor;
     border-radius: 20%;
     border: none;
+    cursor: pointer;
   }
 </style>
