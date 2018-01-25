@@ -28,7 +28,11 @@
       <nuxt-link to="/upload" class="line">Subir publicación</nuxt-link>
       <nav>
         <nuxt-link to="" data-toggle="collapse" data-target="#menuB" aria-expanded="false" aria-controls="menu" class="line username">
-          <i class="material-icons ico">account_box</i><span>{{ name }}</span>
+          <i v-if="!avatar" class="material-icons ico">account_box</i>
+          <img v-if="avatar" :src="avatar" alt="avatar" class="avatar"> 
+          <span>{{ name }}</span>
+          <i class="material-icons ico">keyboard_arrow_down</i>
+          
         </nuxt-link>
       </nav>
       <div id="menuB" class="collapse menuAB">
@@ -47,7 +51,7 @@
   import { mapActions, mapGetters } from 'vuex'
   export default {
     computed: {
-      ...mapGetters({name: 'getDisplayName'})
+      ...mapGetters({name: 'getDisplayName', avatar: 'getUserPhoto'})
     },
     methods: {
       ...mapActions(['logout'])
@@ -77,6 +81,10 @@
 .logomvl {
   color: white;
   text-decoration: none;
+}
+.avatar {
+  width: 2em;
+  margin-right: 1em;
 }
 
 .header nav {

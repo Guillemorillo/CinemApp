@@ -1,7 +1,7 @@
 <template>
   <div>
     <button type="button" class="btn btn-info send" @click="loginWithFacebook">Login con Facebook</button>
-    <button type="button" class="btn btn-warning send" @click="loginWithGoogle">Login con Google</button>
+    <button type="button" class="btn btn-google send" @click="loginWithGoogle">Login con Google</button>
   </div>
 </template>
 <script type="text/javascript">
@@ -36,5 +36,10 @@ export default {
   width: 91%;
   margin-top: 10px;
   height: 50px;
+}
+.btn-google {
+  border: none;
+  background-color: red;
+  color: white;
 }
 </style>
