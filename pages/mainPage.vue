@@ -1,18 +1,23 @@
 <template>
-  <div class="main-page basic-style">
+  <div class="basic-style">
     <header-component></header-component>
-    main page
+    <div class="content-inside">
+      <banner-component :title="banner"></banner-component>
+    </div>
     <footer-component></footer-component>
   </div>
 </template>
 <script>
-  import { HeaderComponent, FooterComponent } from '~/components/common'
+  import { HeaderComponent, FooterComponent, BannerComponent } from '~/components/common'
   export default {
     data () {
-      return {}
+      return {
+        banner: 'Página principal'
+      }
     },
     components: {
       FooterComponent,
+      BannerComponent,
       HeaderComponent
     }
   }
@@ -23,5 +28,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+}
+.content-inside {
+  width: 100%;
+}
+@media screen and (min-width: 850px){
+  .content-inside {
+    width: 90%;
+  }
 }
 </style>
