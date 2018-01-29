@@ -46,8 +46,7 @@ export default {
     update () {
       this.updateUserName(this.userName)
       const newProfile = {
-        bornDate: this.date,
-        displayName: this.userName
+        bornDate: this.date
       }
       this.updateProfileInfo(newProfile)
     }

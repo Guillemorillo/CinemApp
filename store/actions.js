@@ -67,14 +67,11 @@ export default {
     })
     commit('setDisplayName', displayName)
   },
-  updateProfileInfo ({state, commit}, newProfile) {
-    state.userData.update(newProfile)
-  },
-  bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}, uid) => {
+  updateProfileInfo ({state}, newProfile) {
     let db = firebaseApp.database()
-    let userProfile = db.ref('/users/' + uid)
-    dispatch('bindFirebaseReference', {reference: userProfile, toBind: 'userData'}).then(() => { commit('setNewProfile', userProfile) })
-  }),
+    let userRef = db.ref('users/' + state.userData['.key'])
+    userRef.update(newProfile)
+  },
    /**
   * Binds firebase configuration database reference to the store's corresponding object
   * @param {object} store

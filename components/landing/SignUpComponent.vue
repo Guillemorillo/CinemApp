@@ -4,9 +4,6 @@
       <h3>SignUp</h3>
     </div>
     <div>
-      <i class="material-icons ico">account_box</i><input class="input" type="text" v-model="displayName" placeholder="Nombre de usuario">
-    </div>
-    <div>
       <i class="material-icons ico">mail</i><input class="input" type="email" v-model="email" placeholder="Email">
     </div>
     <div>
@@ -25,7 +22,6 @@ import { mapActions } from 'vuex'
 export default {
   data () {
     return {
-      displayName: '',
       email: '',
       password: '',
       bornDate: ''
@@ -35,7 +31,6 @@ export default {
     ...mapActions(['createAuthUser']),
     addUser () {
       const newUser = {
-        displayName: this.displayName,
         bornDate: this.bornDate
       }
       let method = this.createAuthUser
