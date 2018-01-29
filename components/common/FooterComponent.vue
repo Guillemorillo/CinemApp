@@ -17,12 +17,11 @@
 @import "assets/sass/colors.scss";
 .footer {
 @extend .flexWrap;
-background:$blueColor;
+background: $blueColor;
 width: 100%;
 padding:10px;
-font-size: 1rem;
 align-items: center;
-justify-content:space-around;
+justify-content: space-around;
 clear: both;
 }
 
@@ -32,16 +31,16 @@ clear: both;
 
 .footer .links a {
 flex-grow:1;
-color:$whiteColor;
+color: $whiteColor;
 padding:10px;
 text-align: center;
-text-decoration:none;
+text-decoration: none;
 }
 
 .footer .social a {
-color:$whiteColor;
+color: $whiteColor;
 text-decoration: none;
-padding:10px;
+padding: 10px;
 display: inline-block;
 font-size: 1.5em;
 }

@@ -20,6 +20,7 @@ export default {
   align-items: center;
   padding: 1em;
   margin-top: 1em;
+  margin-bottom: 2em;
 }
 .banner-img {
   width: 3em;

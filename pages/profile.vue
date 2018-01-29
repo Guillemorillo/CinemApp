@@ -3,12 +3,14 @@
     <header-component></header-component>
     <div class="content-inside">
       <banner-component :title="banner"></banner-component>
+      <profile-component></profile-component>
     </div>
     <footer-component></footer-component>
   </div>
 </template>
 <script>
   import { HeaderComponent, FooterComponent, BannerComponent } from '~/components/common'
+  import { ProfileComponent } from '~/components/profile'
   export default {
     data () {
       return {
@@ -16,9 +18,10 @@
       }
     },
     components: {
-      FooterComponent,
+      HeaderComponent,
       BannerComponent,
-      HeaderComponent
+      ProfileComponent,
+      FooterComponent
     }
   }
 </script>

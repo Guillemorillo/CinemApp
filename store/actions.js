@@ -38,27 +38,43 @@ export default {
    * @param {object} store
    */
   bindAuth ({commit, dispatch, state}) {
+    let db = firebaseApp.database()
+    let usersRef = db.ref(`/users`)
     firebaseApp.auth().onAuthStateChanged(user => {
       commit('setUser', user)
+      commit('setUsersRef', usersRef)
       if (user) {
         let displayName = user.displayName || user.email.split('@')[0]
+        let id = user.uid
         if (!user.displayName) {
           dispatch('updateUserName', displayName)
         }
         commit('setDisplayName', displayName)
+        commit('setEmail', user.email)
         dispatch('bindFirebaseReferences', user)
+        dispatch('bindUserData', {usersRef, id})
+        usersRef.child(user.uid).child('exist').set(true)
       }
       if (!user) {
         dispatch('unbindFirebaseReferences')
+        dispatch('unbindUserData')
       }
     })
   },
   updateUserName ({state, commit}, displayName) {
     state.user.updateProfile({
-      displayName
+      displayName: displayName
     })
     commit('setDisplayName', displayName)
   },
+  updateProfileInfo ({state, commit}, newProfile) {
+    state.userData.update(newProfile)
+  },
+  bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}, uid) => {
+    let db = firebaseApp.database()
+    let userProfile = db.ref('/users/' + uid)
+    dispatch('bindFirebaseReference', {reference: userProfile, toBind: 'userData'}).then(() => { commit('setNewProfile', userProfile) })
+  }),
    /**
   * Binds firebase configuration database reference to the store's corresponding object
   * @param {object} store
@@ -84,9 +100,16 @@ export default {
       bindFirebaseRef(toBind, reference)
     })
   }),
+  bindUserData: firebaseAction(({state, dispatch}, {usersRef, id}) => {
+    dispatch('bindFirebaseReference', {reference: usersRef.child(id), toBind: 'userData'})
+  }),
   /**
   * Undbinds firebase references
   */
+  unbindUserData: firebaseAction(({state, dispatch, commit}) => {
+    commit('setDisplayName', '')
+    dispatch('unbindFirebaseReferences', {toUnbind: 'userData'})
+  }),
   unbindFirebaseReferences: firebaseAction(({unbindFirebaseRef, commit}) => {
     commit('setMooviesRef', null)
     try {

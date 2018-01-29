@@ -12,6 +12,9 @@
     <div>
       <i class="material-icons ico">&#xE88D;</i><input class="input" type="password" v-model="password" placeholder="Password">
     </div>
+    <div>
+      <i class="material-icons ico">today</i><input class="input" type="date" v-model="bornDate" placeholder="Fecha de nacimiento">
+    </div>
     <div class="enter">
       <button class="enter-button" @click="addUser">Registrar</button>
     </div>
@@ -24,7 +27,8 @@ export default {
     return {
       displayName: '',
       email: '',
-      password: ''
+      password: '',
+      bornDate: ''
     }
   },
   methods: {
@@ -32,7 +36,7 @@ export default {
     addUser () {
       const newUser = {
         displayName: this.displayName,
-        email: this.email
+        bornDate: this.bornDate
       }
       let method = this.createAuthUser
       method({email: this.email, password: this.password, newUser})
