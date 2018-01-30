@@ -5,25 +5,31 @@
     </div>
     <div class="p-info">
       <h3>Nombre de usuario: </h3>
-      <input type="text" class="input-data" v-model="userName">
+      <input type="text" class="input-data" v-model="userName" @change="onChange()">
       <h3>Email: </h3>
       <input type="email" class="input-data" :value="email" disabled>
       <h3>Fecha de nacimiento: </h3>
-      <input type="date" class="input-data" v-model="date">
+      <input type="date" class="input-data" v-model="date" @change="onChange()">
     </div>
     <div>
-      <button class="save" @click="update()">Guardar cambios</button>
+      <nuxt-link to="" data-toggle="modal" data-target="#confirm"><button class="save" @click="update()" v-if="changes">Guardar cambios</button></nuxt-link>
     </div>
+    <changes-confirm-component></changes-confirm-component>
   </div>
 </template>
 <script>
+import ChangesConfirmComponent from '~/components/profile/ChangesConfirmComponent'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
+      changes: false,
       userName: null,
       date: null
     }
+  },
+  components: {
+    ChangesConfirmComponent
   },
   computed: {
     ...mapGetters({name: 'getDisplayName', avatar: 'getUserPhoto', email: 'getEmail', userData: 'getProfile'})
@@ -49,6 +55,10 @@ export default {
         bornDate: this.date
       }
       this.updateProfileInfo(newProfile)
+      this.changes = false
+    },
+    onChange () {
+      this.changes = true
     }
   }
 }
