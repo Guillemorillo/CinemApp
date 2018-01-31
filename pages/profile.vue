@@ -30,7 +30,7 @@
       setTimeout(() => {
         this.isLoading = false
         document.getElementsByTagName('body')[0].style.overflow = 'visible'
-      }, 2000)
+      }, 1000)
     }
   }
 </script>

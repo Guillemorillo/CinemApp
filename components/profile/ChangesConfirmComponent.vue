@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Confirmación</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="close()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -12,9 +12,18 @@
           <span>Cambios Guardados</span>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="close()">Cerrar</button>
         </div>
       </div>
     </div>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    close () {
+      this.$router.push('/')
+    }
+  }
+}
+</script>
