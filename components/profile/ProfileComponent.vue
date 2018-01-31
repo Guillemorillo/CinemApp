@@ -1,7 +1,8 @@
 <template>
   <div class="profile">
     <div class="p-img-cont">
-      <img class="p-img" :src="imgAvatar()" alt="imagen de usuario">
+      <img class="p-img" :src="userPhoto" alt="imagen de usuario">
+      <input type="file" name="img" @change="onChangeImg($event.target.files)" ref="imageFile">
     </div>
     <div class="p-info">
       <h3>Nombre de usuario: </h3>
@@ -25,7 +26,9 @@ export default {
     return {
       changes: false,
       userName: null,
-      date: null
+      date: null,
+      userPhoto: null,
+      chagePhoto: false
     }
   },
   components: {
@@ -37,25 +40,29 @@ export default {
   mounted: function () {
     this.$nextTick(function () {
       this.userName = this.name
-      this.date = this.userData.bornDate
+      this.avatar ? this.userPhoto = this.avatar : this.userPhoto = require('~/assets/img/foto-perfil.jpg')
+      this.userData.bornDate ? this.date = this.userData.bornDate : this.date = '0001-01-01'
     })
   },
   methods: {
-    ...mapActions(['updateUserName', 'updateProfileInfo']),
-    imgAvatar () {
-      if (this.avatar) {
-        return this.avatar
-      } else {
-        return require('~/assets/img/foto-perfil.jpg')
-      }
-    },
+    ...mapActions(['updateUserName', 'updateProfileInfo', 'updatePhotoURL', 'uploadImage']),
     update () {
-      this.updateUserName(this.userName)
       const newProfile = {
         bornDate: this.date
       }
+      this.updateUserName(this.userName)
+      this.updatePhotoURL(this.userPhoto)
       this.updateProfileInfo(newProfile)
       this.changes = false
+      this.chagePhoto = false
+    },
+    onChangeImg (files) {
+      this.uploadImage({files: [...files], folder: 'profileImages'}).then(picUrls => {
+        this.userPhoto = picUrls[0]
+        this.chagePhoto = true
+        this.changes = true
+        this.$refs.imageFile.value = null
+      })
     },
     onChange () {
       this.changes = true

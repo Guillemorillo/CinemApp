@@ -4,8 +4,6 @@ const user = null
 const usersRef = null
 const userData = null
 const newProfile = null
-const displayName = ''
-const email = ''
 
 export default {
   mooviesRef,
@@ -13,7 +11,5 @@ export default {
   usersRef,
   userData,
   user,
-  newProfile,
-  displayName,
-  email
+  newProfile
 }

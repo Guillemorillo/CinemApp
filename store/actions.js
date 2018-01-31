@@ -1,7 +1,17 @@
 import firebaseApp from '~/firebaseapp'
 import { firebaseAction } from 'vuexfire'
+import uuidv1 from 'uuid/v1'
 
+const _uploadImage = (folder, user) => (file) => {
+  let ref = firebaseApp.storage().ref().child(folder + '/' + user)
+  return ref.child(uuidv1()).child(file.name).put(file).then(snapshot => {
+    return snapshot.downloadURL
+  })
+}
 export default {
+  uploadImage ({state}, {files, folder}) {
+    return Promise.all(files.map(_uploadImage(folder, state.userId)))
+  },
   createAuthUser ({commit, dispatch}, {email, password, newUser}) {
     firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(({uid}) => {
       commit('setAuthError', '')
@@ -46,14 +56,13 @@ export default {
       if (user) {
         let displayName = user.displayName || user.email.split('@')[0]
         let id = user.uid
-        if (!user.displayName) {
-          dispatch('updateUserName', displayName)
-        }
-        commit('setDisplayName', displayName)
-        commit('setEmail', user.email)
+        if (!user.displayName) { dispatch('updateUserName', {displayName, id}) }
         dispatch('bindFirebaseReferences', user)
         dispatch('bindUserData', {usersRef, id})
-        usersRef.child(user.uid).child('exist').set(true)
+
+        usersRef.child(id).once('value', function (snapshot) {
+          snapshot.hasChild('exist') ? null : snapshot.child('exist').set(true)
+        })
       }
       if (!user) {
         dispatch('unbindFirebaseReferences')
@@ -61,11 +70,15 @@ export default {
       }
     })
   },
-  updateUserName ({state, commit}, displayName) {
+  updateUserName ({state}, displayName) {
     state.user.updateProfile({
       displayName: displayName
     })
-    commit('setDisplayName', displayName)
+  },
+  updatePhotoURL ({state}, photoURL) {
+    state.user.updateProfile({
+      photoURL: photoURL
+    })
   },
   updateProfileInfo ({state}, newProfile) {
     let db = firebaseApp.database()
