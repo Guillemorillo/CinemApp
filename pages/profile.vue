@@ -6,6 +6,7 @@
       <profile-component></profile-component>
     </div>
     <footer-component></footer-component>
+    <div v-if="isLoading" class="load"><img src="~/assets/oval.svg" width="80" alt=""></div>
   </div>
 </template>
 <script>
@@ -14,7 +15,8 @@
   export default {
     data () {
       return {
-        banner: 'Tu perfil'
+        banner: 'Tu perfil',
+        isLoading: true
       }
     },
     components: {
@@ -22,6 +24,13 @@
       BannerComponent,
       ProfileComponent,
       FooterComponent
+    },
+    mounted () {
+      document.getElementsByTagName('body')[0].style.overflow = 'hidden'
+      setTimeout(() => {
+        this.isLoading = false
+        document.getElementsByTagName('body')[0].style.overflow = 'visible'
+      }, 2000)
     }
   }
 </script>
@@ -35,6 +44,20 @@
 }
 .content-inside {
   width: 100%;
+}
+img {
+  width: 100%;
+}
+.load {
+  padding-top: 20%;
+  padding-left: 47%;
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height:100%;
+  background-color: rgba(255,255,255,0.8);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 @media screen and (min-width: 850px){
   .content-inside {

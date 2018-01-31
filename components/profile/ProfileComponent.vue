@@ -35,7 +35,7 @@ export default {
     ChangesConfirmComponent
   },
   computed: {
-    ...mapGetters({name: 'getDisplayName', avatar: 'getUserPhoto', email: 'getEmail', userData: 'getProfile'})
+    ...mapGetters({name: 'getDisplayName', avatar: 'getUserPhoto', email: 'getEmail', userData: 'getUserData'})
   },
   mounted: function () {
     this.$nextTick(function () {

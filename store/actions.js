@@ -59,10 +59,7 @@ export default {
         if (!user.displayName) { dispatch('updateUserName', {displayName, id}) }
         dispatch('bindFirebaseReferences', user)
         dispatch('bindUserData', {usersRef, id})
-
-        usersRef.child(id).once('value', function (snapshot) {
-          snapshot.hasChild('exist') ? null : snapshot.child('exist').set(true)
-        })
+        usersRef.child(user.uid).child('exist').set(true)
       }
       if (!user) {
         dispatch('unbindFirebaseReferences')
@@ -117,7 +114,6 @@ export default {
   * Undbinds firebase references
   */
   unbindUserData: firebaseAction(({state, dispatch, commit}) => {
-    commit('setDisplayName', '')
     dispatch('unbindFirebaseReferences', {toUnbind: 'userData'})
   }),
   unbindFirebaseReferences: firebaseAction(({unbindFirebaseRef, commit}) => {
