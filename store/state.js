@@ -4,6 +4,8 @@ const user = null
 const usersRef = null
 const userData = null
 const newProfile = null
+const favorite = null
+const favoritePosts = []
 
 export default {
   mooviesRef,
@@ -11,5 +13,7 @@ export default {
   usersRef,
   userData,
   user,
-  newProfile
+  newProfile,
+  favorite,
+  favoritePosts
 }

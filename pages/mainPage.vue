@@ -3,7 +3,7 @@
     <header-component></header-component>
     <div class="content-inside">
       <banner-component :title="banner"></banner-component>
-      <items-list-component></items-list-component>
+      <items-list-component :moovies="moovies"></items-list-component>
     </div>
     <footer-component></footer-component>
   </div>
@@ -11,11 +11,15 @@
 <script>
   import { HeaderComponent, FooterComponent, BannerComponent } from '~/components/common'
   import { itemsListComponent } from '~/components/items'
+  import {mapGetters} from 'vuex'
   export default {
     data () {
       return {
         banner: 'Películas'
       }
+    },
+    computed: {
+      ...mapGetters({moovies: 'getMoovies'})
     },
     components: {
       FooterComponent,

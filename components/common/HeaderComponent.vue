@@ -16,6 +16,15 @@
         <nuxt-link to="/profile">
           <li class="list-group-item ul-menu"><i class="material-icons icon-l">account_box</i>Perfil</li>
         </nuxt-link>
+        <nuxt-link to="/favorites">
+          <li class="list-group-item ul-menu"><i class="material-icons icon-l">favorites</i>Favoritas</li>
+        </nuxt-link>
+        <nuxt-link to="/seens">
+          <li class="list-group-item ul-menu"><i class="material-icons icon-l">visibility</i>Vistas</li>
+        </nuxt-link>
+        <nuxt-link to="/pendients">
+          <li class="list-group-item ul-menu"><i class="material-icons icon-l">playlist_add_check</i>Pendientes</li>
+        </nuxt-link>
         <nuxt-link to="/upload">
           <li class="list-group-item ul-menu"><i class="material-icons icon-l">vertical_align_top</i>Subir publicación</li>
         </nuxt-link>
@@ -39,6 +48,15 @@
         <ul class="list-group">
           <nuxt-link to="/profile">
             <li class="list-group-item ul-menu"><i class="material-icons icon-l">account_box</i>Perfil</li>
+          </nuxt-link>
+          <nuxt-link to="/favorites">
+            <li class="list-group-item ul-menu"><i class="material-icons icon-l">favorites</i>Favoritas</li>
+          </nuxt-link>
+          <nuxt-link to="/seens">
+            <li class="list-group-item ul-menu"><i class="material-icons icon-l">visibility</i>Vistas</li>
+          </nuxt-link>
+          <nuxt-link to="/pendients">
+            <li class="list-group-item ul-menu"><i class="material-icons icon-l">playlist_add_check</i>Pendientes</li>
           </nuxt-link>
           <li class="list-group-item ul-menu logout" @click="logout()"><i class="material-icons icon-l">power_settings_new</i>Salir</li>
         </ul>

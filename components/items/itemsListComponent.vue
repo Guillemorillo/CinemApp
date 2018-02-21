@@ -1,17 +1,14 @@
 <template>
   <div class="list">
-    <item-component v-for="moovie in moovies" :key="moovie.title" v-if="moovie.title" :moovie="moovie"></item-component>
+    <item-component v-for="(moovie, key) in moovies" :moovieKey="key" :key="moovie.title" v-if="moovie.title" :moovie="moovie"></item-component>
   </div>
 </template>
 <script>
 import itemComponent from '~/components/items/itemComponent'
-import {mapGetters} from 'vuex'
 export default {
+  props: ['moovies'],
   data () {
     return {}
-  },
-  computed: {
-    ...mapGetters({moovies: 'getMoovies'})
   },
   components: {
     itemComponent

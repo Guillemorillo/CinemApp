@@ -13,5 +13,11 @@ export default {
   },
   setMooviesRef (state, value) {
     state.mooviesRef = value
+  },
+  setFavorite (state, value) {
+    state.favorite = value
+  },
+  setFavoritePosts (state, value) {
+    state.favoritePosts = value
   }
 }

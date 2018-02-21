@@ -60,6 +60,10 @@ export default {
         dispatch('bindFirebaseReferences', user)
         dispatch('bindUserData', {usersRef, id})
         usersRef.child(user.uid).child('exist').set(true)
+        let addFavorites = db.ref(`/users/` + user['uid'] + `/favorites`)
+        addFavorites.on('value', function (snapshot) {
+          commit('setFavorite', snapshot.val())
+        })
       }
       if (!user) {
         dispatch('unbindFirebaseReferences')
@@ -86,6 +90,36 @@ export default {
   uploadMoovie ({state}, newMoovie) {
     newMoovie.user_id = state.userData['.key']
     state.mooviesRef.push(newMoovie)
+  },
+  addFavorite ({commit, state}, info) {
+    let db = firebaseApp.database()
+    let addFavorites = db.ref(`/users/` + info.userUid + `/favorites`)
+    addFavorites.child(info.key).set(info.key)
+  },
+  unSetFavorite ({commit, state}, info) {
+    let db = firebaseApp.database()
+    let addFavorites = db.ref(`/users/` + info.userUid + `/favorites`)
+    addFavorites.child(info.key).remove()
+  },
+  favoritePostsA ({commit, state, dispatch}) {
+    let db = firebaseApp.database()
+    let favoriteP = state.favorite
+    db.ref('/moovies').once('value').then(snapshot => {
+      if (snapshot.val()) {
+        const favoritesPosts = []
+        Object.keys(snapshot.val()).forEach(function (key) {
+          var idP = key
+          var posts = snapshot.val()[key]
+          Object.keys(favoriteP).forEach(function (key) {
+            var favo = favoriteP[key]
+            if (idP === favo) {
+              favoritesPosts.push(posts)
+            }
+          })
+        })
+        commit('setFavoritePosts', favoritesPosts)
+      }
+    })
   },
    /**
   * Binds firebase configuration database reference to the store's corresponding object
