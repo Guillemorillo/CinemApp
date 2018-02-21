@@ -106,14 +106,14 @@ export default {
     let favoriteP = state.favorite
     db.ref('/moovies').once('value').then(snapshot => {
       if (snapshot.val()) {
-        const favoritesPosts = []
+        const favoritesPosts = {}
         Object.keys(snapshot.val()).forEach(function (key) {
           var idP = key
           var posts = snapshot.val()[key]
           Object.keys(favoriteP).forEach(function (key) {
             var favo = favoriteP[key]
             if (idP === favo) {
-              favoritesPosts.push(posts)
+              favoritesPosts[key] = posts
             }
           })
         })

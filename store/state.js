@@ -5,7 +5,7 @@ const usersRef = null
 const userData = null
 const newProfile = null
 const favorite = null
-const favoritePosts = []
+const favoritePosts = {}
 
 export default {
   mooviesRef,
