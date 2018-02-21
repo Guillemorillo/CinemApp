@@ -1,7 +1,8 @@
 <template>
   <div class="card">
     <div>
-      <img class="poster" :src="moovie.src">
+      <img class="poster" :src="moovie.src" :alt="moovie.title" v-show="loadedImage" @load="handleLoadedImage">
+      <div class="spinner" v-show="loadingImage"><img src="~/assets/oval.svg" width="80" alt=""></div>
       <h1 class="title">{{ moovie.title }}</h1>
     </div>
     <div class="buttons">
@@ -16,9 +17,17 @@ export default {
   props: ['moovie'],
   data () {
     return {
+      loadingImage: true,
+      loadedImage: false,
       heart: false,
       seen: false,
       pend: false
+    }
+  },
+  methods: {
+    handleLoadedImage () {
+      this.loadingImage = false
+      this.loadedImage = true
     }
   }
 }
@@ -29,8 +38,9 @@ export default {
   background: $blueColor;
   color: white;
   font-size: 12px;
-  max-width: 10%;
+  max-width: 49%;
   text-align: center;
+  margin-bottom: 1.5em;
 }
 .poster {
   width: 100%;
@@ -46,5 +56,14 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+@media screen and (min-width: 800px) {
+  .card {
+    width: 19%;
+  }
+  .poster {
+    width: 100%;
+    height: 300px;
+  }
 }
 </style>

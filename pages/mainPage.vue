@@ -3,29 +3,25 @@
     <header-component></header-component>
     <div class="content-inside">
       <banner-component :title="banner"></banner-component>
+      <items-list-component></items-list-component>
     </div>
-    <item-component :moovie="moovie"></item-component>
     <footer-component></footer-component>
   </div>
 </template>
 <script>
   import { HeaderComponent, FooterComponent, BannerComponent } from '~/components/common'
-  import { itemComponent } from '~/components/items'
+  import { itemsListComponent } from '~/components/items'
   export default {
     data () {
       return {
-        banner: 'Página principal',
-        moovie: {
-          src: require('~/assets/img/images.jpg'),
-          title: 'Logan'
-        }
+        banner: 'Películas'
       }
     },
     components: {
       FooterComponent,
       BannerComponent,
       HeaderComponent,
-      itemComponent
+      itemsListComponent
     }
   }
 </script>
