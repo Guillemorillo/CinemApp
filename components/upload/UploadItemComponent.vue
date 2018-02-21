@@ -19,7 +19,7 @@
       <p>* campo obligatorio</p>
       <p>Intente no subir pelis que ya hayan sido publicadas antes. Gracias.</p>
     </div>
-    <div>
+    <div class="button-save">
       <nuxt-link to="" data-toggle="modal" data-target="#confirm"><button class="save" @click="upload()" v-if="uploadName">subir publicación</button></nuxt-link>
     </div>
     <upload-confirm-component></upload-confirm-component>
@@ -102,6 +102,10 @@ export default {
 }
 .up-img{
   margin-bottom: 1em;
+}
+.button-save {
+  width: 100%;
+  text-align: center;
 }
 @media screen and (min-width: 850px) {
   .upload {

@@ -1,29 +1,17 @@
 <template>
   <div class="list">
-    <item-component :moovie="moovie"></item-component>
-    <item-component :moovie="terminator"></item-component>
-    <item-component :moovie="moovie"></item-component>
-    <item-component :moovie="terminator"></item-component>
-    <item-component :moovie="moovie"></item-component>
-    <item-component :moovie="terminator"></item-component>
-    <item-component :moovie="moovie"></item-component>
-    <item-component :moovie="terminator"></item-component>
+    <item-component v-for="moovie in moovies" :key="moovie.title" v-if="moovie.title" :moovie="moovie"></item-component>
   </div>
 </template>
 <script>
 import itemComponent from '~/components/items/itemComponent'
+import {mapGetters} from 'vuex'
 export default {
   data () {
-    return {
-      moovie: {
-        src: require('~/assets/img/images.jpg'),
-        title: 'Logan'
-      },
-      terminator: {
-        src: require('~/assets/img/terminator.jpg'),
-        title: 'Terminator 1'
-      }
-    }
+    return {}
+  },
+  computed: {
+    ...mapGetters({moovies: 'getMoovies'})
   },
   components: {
     itemComponent

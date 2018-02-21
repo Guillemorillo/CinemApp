@@ -39,11 +39,13 @@ export default {
   color: white;
   font-size: 12px;
   max-width: 49%;
+  width: 49%;
   text-align: center;
   margin-bottom: 1.5em;
 }
 .poster {
   width: 100%;
+  height: 300px;
   border-bottom: 1px solid white;
 }
 .title {
@@ -60,10 +62,6 @@ export default {
 @media screen and (min-width: 800px) {
   .card {
     width: 19%;
-  }
-  .poster {
-    width: 100%;
-    height: 300px;
   }
 }
 </style>
