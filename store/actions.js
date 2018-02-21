@@ -3,14 +3,14 @@ import { firebaseAction } from 'vuexfire'
 import uuidv1 from 'uuid/v1'
 
 const _uploadImage = (folder, user) => (file) => {
-  let ref = firebaseApp.storage().ref().child(folder + '/' + user)
+  let ref = firebaseApp.storage().ref().child(folder + '/')
   return ref.child(uuidv1()).child(file.name).put(file).then(snapshot => {
     return snapshot.downloadURL
   })
 }
 export default {
   uploadImage ({state}, {files, folder}) {
-    return Promise.all(files.map(_uploadImage(folder, state.userId)))
+    return Promise.all(files.map(_uploadImage(folder)))
   },
   createAuthUser ({commit, dispatch}, {email, password, newUser}) {
     firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(({uid}) => {
@@ -81,6 +81,11 @@ export default {
     let db = firebaseApp.database()
     let userRef = db.ref('users/' + state.userData['.key'])
     userRef.update(newProfile)
+  },
+  /** Moovies */
+  uploadMoovie ({state}, newMoovie) {
+    newMoovie.user_id = state.userData['.key']
+    state.mooviesRef.push(newMoovie)
   },
    /**
   * Binds firebase configuration database reference to the store's corresponding object

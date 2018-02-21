@@ -3,12 +3,14 @@
     <header-component></header-component>
     <div class="content-inside">
       <banner-component :title="banner"></banner-component>
+      <upload-item-component></upload-item-component>
     </div>
     <footer-component></footer-component>
   </div>
 </template>
 <script>
   import { HeaderComponent, FooterComponent, BannerComponent } from '~/components/common'
+  import UploadItemComponent from '~/components/upload/UploadItemComponent'
   export default {
     data () {
       return {
@@ -18,7 +20,8 @@
     components: {
       FooterComponent,
       BannerComponent,
-      HeaderComponent
+      HeaderComponent,
+      UploadItemComponent
     }
   }
 </script>
