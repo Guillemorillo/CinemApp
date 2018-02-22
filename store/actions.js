@@ -91,17 +91,17 @@ export default {
     newMoovie.user_id = state.userData['.key']
     state.mooviesRef.push(newMoovie)
   },
-  addFavorite ({commit, state}, info) {
+  addToList ({commit, state}, info) {
     let db = firebaseApp.database()
-    let addFavorites = db.ref(`/users/` + info.userUid + `/favorites`)
+    let addFavorites = db.ref(`/users/` + info.userUid + `/` + info.list)
     addFavorites.child(info.key).set(info.key)
   },
-  unSetFavorite ({commit, state}, info) {
+  unSetFromList ({commit, state}, info) {
     let db = firebaseApp.database()
-    let addFavorites = db.ref(`/users/` + info.userUid + `/favorites`)
+    let addFavorites = db.ref(`/users/` + info.userUid + `/` + info.list)
     addFavorites.child(info.key).remove()
   },
-  favoritePostsA ({commit, state, dispatch}) {
+  favoritePostsA ({commit, state}) {
     let db = firebaseApp.database()
     let favoriteP = state.favorite
     db.ref('/moovies').once('value').then(snapshot => {

@@ -1,5 +1,5 @@
 const mooviesRef = null
-const moovies = null
+const moovies = {}
 const user = null
 const usersRef = null
 const userData = null

@@ -6,18 +6,18 @@
       <h1 class="title">{{ moovie.title }}</h1>
     </div>
     <div class="buttons">
-      <div class="fav-btn">
-        <i v-if="!heart" class="material-icons" @click="favorite()">favorite_border</i>
-        <i v-else class="material-icons" @click="favorite()">favorite</i>
-      </div>
-      <div class="seen-btn">
-        <i v-if="!seen" class="material-icons">visibility_off</i>
-        <i v-else class="material-icons">visibility</i>
-      </div>
-      <div class="pend-btn">
-        <i v-if="!pend" class="material-icons">queue</i>
-        <i v-else class="material-icons">playlist_add_check</i>
-      </div>
+      <transition name="bounce" mode="out-in">
+        <i v-if="!heart" class="material-icons" @click="toList('favorites')" key="no-fav" >favorite_border</i>
+        <i v-else class="material-icons" @click="toList('favorites')" key="fav">favorite</i>
+      </transition>
+      <transition name="bounce" mode="out-in">
+        <i v-if="!seen" class="material-icons" @click="toList('seens')" key="no-seen">visibility_off</i>
+        <i v-else class="material-icons" @click="toList('seens')" key="seen">visibility</i>
+      </transition>
+      <transition name="bounce" mode="out-in">
+        <i v-if="!pend" class="material-icons" @click="toList('pendient')" key="no-list">queue</i>
+        <i v-else class="material-icons" @click="toList('pendient')" key="list">playlist_add_check</i>
+      </transition>
     </div>
   </div>
 </template>
@@ -38,28 +38,31 @@ export default {
     ...mapGetters({userId: 'isAuthenticated', favorites: 'getFavorite'})
   },
   methods: {
-    ...mapActions(['addFavorite', 'unSetFavorite']),
+    ...mapActions(['addToList', 'unSetFromList']),
     handleLoadedImage () {
       this.loadingImage = false
       this.loadedImage = true
     },
-    favorite () {
-      this.heart = !this.heart
-      if (this.heart) {
-        console.log('key ' + this.moovieKey)
-        let info = {
-          title: this.moovie.title,
-          key: this.moovieKey,
-          userUid: this.userId.uid
-        }
-        this.addFavorite(info)
-      } else {
-        let info = {
-          title: this.moovie.title,
-          key: this.moovieKey,
-          userUid: this.userId.uid
-        }
-        this.unSetFavorite(info)
+    toList (to) {
+      let info = {
+        list: to,
+        title: this.moovie.title,
+        key: this.moovieKey,
+        userUid: this.userId.uid
+      }
+      switch (to) {
+        case 'favorites':
+          this.heart = !this.heart
+          this.heart ? this.addToList(info) : this.unSetFromList(info)
+          break
+        case 'seens':
+          this.seen = !this.seen
+          this.seen ? this.addToList(info) : this.unSetFromList(info)
+          break
+        case 'pendient':
+          this.pend = !this.pend
+          this.pend ? this.addToList(info) : this.unSetFromList(info)
+          break
       }
     }
   },
@@ -102,9 +105,31 @@ export default {
 i {
   cursor: pointer;
 }
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 @media screen and (min-width: 800px) {
   .card {
     width: 19%;
+  }
+}
+@media (min-width: 1080px) {
+  .card{
+    width: 15%
   }
 }
 </style>

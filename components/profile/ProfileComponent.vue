@@ -86,7 +86,7 @@ export default {
 }
 .p-img {
   border-radius: 30%;
-  max-width: 95%;
+  width: 95%;
 }
 .p-info {
   width: 100%;
@@ -111,6 +111,9 @@ export default {
   }
   .p-info {
     width: 50%;
+  }
+  .p-img {
+    width: 70%;
   }
 }
 </style>
