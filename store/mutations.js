@@ -19,5 +19,17 @@ export default {
   },
   setFavoritePosts (state, value) {
     state.favoritePosts = value
+  },
+  setSeens (state, value) {
+    state.seen = value
+  },
+  setSeenMoovies (state, value) {
+    state.seenMoovies = value
+  },
+  setPends (state, value) {
+    state.pend = value
+  },
+  setPendMoovies (state, value) {
+    state.pendMoovies = value
   }
 }

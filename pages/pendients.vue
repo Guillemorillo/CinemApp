@@ -3,7 +3,7 @@
     <header-component></header-component>
     <div class="content-inside">
       <banner-component :title="banner"></banner-component>
-      <items-list-component :moovies="favMoovies"></items-list-component>
+      <items-list-component :moovies="pendMoovies"></items-list-component>
     </div>
     <footer-component></footer-component>
   </div>
@@ -15,14 +15,14 @@
   export default {
     data () {
       return {
-        banner: 'Las quiero ver'
+        banner: 'Pendientes'
       }
     },
     methods: {
-      ...mapActions(['favoritePostsA'])
+      ...mapActions(['pendPosts'])
     },
     computed: {
-      ...mapGetters({ favMoovies: 'getFavoritePosts' })
+      ...mapGetters({ pendMoovies: 'getPendMoovies' })
     },
     components: {
       FooterComponent,
@@ -31,7 +31,7 @@
       itemsListComponent
     },
     mounted () {
-      this.favoritePostsA()
+      this.pendPosts()
     }
   }
 </script>

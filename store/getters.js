@@ -6,5 +6,9 @@ export default {
   getUserData: state => state.userData || {},
   getMoovies: state => state.moovies,
   getFavorite: state => state.favorite,
-  getFavoritePosts: state => state.favoritePosts
+  getFavoritePosts: state => state.favoritePosts,
+  getSeen: state => state.seen,
+  getPend: state => state.pend,
+  getSeenMoovies: state => state.seenMoovies,
+  getPendMoovies: state => state.pendMoovies
 }

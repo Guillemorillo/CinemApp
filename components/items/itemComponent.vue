@@ -11,11 +11,11 @@
         <i v-else class="material-icons" @click="toList('favorites')" key="fav">favorite</i>
       </transition>
       <transition name="bounce" mode="out-in">
-        <i v-if="!seen" class="material-icons" @click="toList('seens')" key="no-seen">visibility_off</i>
+        <i v-if="!seenP" class="material-icons" @click="toList('seens')" key="no-seen">visibility_off</i>
         <i v-else class="material-icons" @click="toList('seens')" key="seen">visibility</i>
       </transition>
       <transition name="bounce" mode="out-in">
-        <i v-if="!pend" class="material-icons" @click="toList('pendient')" key="no-list">queue</i>
+        <i v-if="!pendP" class="material-icons" @click="toList('pendient')" key="no-list">queue</i>
         <i v-else class="material-icons" @click="toList('pendient')" key="list">playlist_add_check</i>
       </transition>
     </div>
@@ -30,12 +30,17 @@ export default {
       loadingImage: true,
       loadedImage: false,
       heart: false,
-      seen: false,
-      pend: false
+      seenP: false,
+      pendP: false
     }
   },
   computed: {
-    ...mapGetters({userId: 'isAuthenticated', favorites: 'getFavorite'})
+    ...mapGetters({
+      userId: 'isAuthenticated',
+      favorites: 'getFavorite',
+      seen: 'getSeen',
+      pend: 'getPend'
+    })
   },
   methods: {
     ...mapActions(['addToList', 'unSetFromList']),
@@ -56,12 +61,12 @@ export default {
           this.heart ? this.addToList(info) : this.unSetFromList(info)
           break
         case 'seens':
-          this.seen = !this.seen
-          this.seen ? this.addToList(info) : this.unSetFromList(info)
+          this.seenP = !this.seenP
+          this.seenP ? this.addToList(info) : this.unSetFromList(info)
           break
         case 'pendient':
-          this.pend = !this.pend
-          this.pend ? this.addToList(info) : this.unSetFromList(info)
+          this.pendP = !this.pendP
+          this.pendP ? this.addToList(info) : this.unSetFromList(info)
           break
       }
     }
@@ -70,6 +75,16 @@ export default {
     if (this.favorites != null) {
       if (this.favorites[this.moovieKey]) {
         this.heart = true
+      }
+    }
+    if (this.seen != null) {
+      if (this.seen[this.moovieKey]) {
+        this.seenP = true
+      }
+    }
+    if (this.pend != null) {
+      if (this.pend[this.moovieKey]) {
+        this.pendP = true
       }
     }
   }

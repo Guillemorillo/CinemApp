@@ -6,6 +6,10 @@ const userData = null
 const newProfile = null
 const favorite = null
 const favoritePosts = {}
+const seen = null
+const seenMoovies = {}
+const pend = null
+const pendMoovies = {}
 
 export default {
   mooviesRef,
@@ -15,5 +19,9 @@ export default {
   user,
   newProfile,
   favorite,
-  favoritePosts
+  favoritePosts,
+  seen,
+  seenMoovies,
+  pend,
+  pendMoovies
 }

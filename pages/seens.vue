@@ -3,7 +3,7 @@
     <header-component></header-component>
     <div class="content-inside">
       <banner-component :title="banner"></banner-component>
-      <items-list-component :moovies="favMoovies"></items-list-component>
+      <items-list-component :moovies="seenMoovies"></items-list-component>
     </div>
     <footer-component></footer-component>
   </div>
@@ -19,10 +19,10 @@
       }
     },
     methods: {
-      ...mapActions(['favoritePostsA'])
+      ...mapActions(['seenPosts'])
     },
     computed: {
-      ...mapGetters({ favMoovies: 'getFavoritePosts' })
+      ...mapGetters({ seenMoovies: 'getSeenMoovies' })
     },
     components: {
       FooterComponent,
@@ -31,7 +31,7 @@
       itemsListComponent
     },
     mounted () {
-      this.favoritePostsA()
+      this.seenPosts()
     }
   }
 </script>

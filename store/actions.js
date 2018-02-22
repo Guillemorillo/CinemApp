@@ -39,9 +39,11 @@ export default {
   * Logouts the user from the application
   * @param {object} store
   */
-  logout ({state}, router) {
+  logout ({dispatch}, router) {
     firebaseApp.auth().signOut()
     this.$router.push('/')
+    dispatch('unbindFirebaseReferences')
+    dispatch('unbindUserData')
   },
   /**
    * Binds firebase auth listener to the auth changes to the callback that will set the store's user object
@@ -61,8 +63,16 @@ export default {
         dispatch('bindUserData', {usersRef, id})
         usersRef.child(user.uid).child('exist').set(true)
         let addFavorites = db.ref(`/users/` + user['uid'] + `/favorites`)
+        let seensRef = db.ref(`/users/` + user['uid'] + `/seens`)
+        let pendRef = db.ref(`/users/` + user['uid'] + `/pendient`)
         addFavorites.on('value', function (snapshot) {
           commit('setFavorite', snapshot.val())
+        })
+        seensRef.on('value', function (snapshot) {
+          commit('setSeens', snapshot.val())
+        })
+        pendRef.on('value', function (snapshot) {
+          commit('setPends', snapshot.val())
         })
       }
       if (!user) {
@@ -94,7 +104,7 @@ export default {
   addToList ({commit, state}, info) {
     let db = firebaseApp.database()
     let addFavorites = db.ref(`/users/` + info.userUid + `/` + info.list)
-    addFavorites.child(info.key).set(info.key)
+    addFavorites.child(info.key).set(info.title)
   },
   unSetFromList ({commit, state}, info) {
     let db = firebaseApp.database()
@@ -111,13 +121,51 @@ export default {
           var idP = key
           var posts = snapshot.val()[key]
           Object.keys(favoriteP).forEach(function (key) {
-            var favo = favoriteP[key]
+            var favo = key
             if (idP === favo) {
               favoritesPosts[key] = posts
             }
           })
         })
         commit('setFavoritePosts', favoritesPosts)
+      }
+    })
+  },
+  seenPosts ({commit, state}) {
+    let db = firebaseApp.database()
+    let seenPo = state.seen
+    db.ref('/moovies').once('value').then(snapshot => {
+      if (snapshot.val()) {
+        const seenM = {}
+        Object.keys(snapshot.val()).forEach(function (key) {
+          var idP = key
+          var posts = snapshot.val()[key]
+          Object.keys(seenPo).forEach(function (key) {
+            if (idP === key) {
+              seenM[key] = posts
+            }
+          })
+        })
+        commit('setSeenMoovies', seenM)
+      }
+    })
+  },
+  pendPosts ({commit, state}) {
+    let db = firebaseApp.database()
+    let pendPo = state.pend
+    db.ref('/moovies').once('value').then(snapshot => {
+      if (snapshot.val()) {
+        const pendM = {}
+        Object.keys(snapshot.val()).forEach(function (key) {
+          var idP = key
+          var posts = snapshot.val()[key]
+          Object.keys(pendPo).forEach(function (key) {
+            if (idP === key) {
+              pendM[key] = posts
+            }
+          })
+        })
+        commit('setPendMoovies', pendM)
       }
     })
   },
