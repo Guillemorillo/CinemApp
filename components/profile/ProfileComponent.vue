@@ -79,6 +79,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  color: white;
 }
 .p-img-cont {
   width: 100%;
@@ -93,12 +94,14 @@ export default {
 }
 .input-data {
   border: none;
-  border-bottom: 1px solid $blueColor;
+  border-bottom: 1px solid #fff;
   width: 90%;
+  color: white;
+  background-color: $darkBlue;
 }
 .save {
-  color: $blueColor;
-  border: 5px, solid, $blueColor;
+  color: black;
+  border: 5px, solid, #fff;
   border-radius: 20%;
   background: white;
   padding: 1em;

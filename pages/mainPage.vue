@@ -29,13 +29,15 @@
     }
   }
 </script>
-<style>
+<style lang="scss">
+@import "assets/sass/colors.scss";
 .basic-style {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  background-color: $darkBlue;
 }
 .content-inside {
   width: 100%;

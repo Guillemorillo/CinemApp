@@ -79,7 +79,7 @@ export default {
 <style lang="scss" scoped>
 @import "assets/sass/colors.scss";
 .upload {
-  color: $blueColor;
+  color: white;
   margin-bottom: 2em;
 }
 .save {

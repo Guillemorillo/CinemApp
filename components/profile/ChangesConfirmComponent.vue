@@ -27,3 +27,9 @@ export default {
   }
 }
 </script>
+<style>
+.modal {
+  color: black;
+}
+</style>
+
