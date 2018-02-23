@@ -73,17 +73,17 @@ export default {
   },
   mounted () {
     if (this.favorites != null) {
-      if (this.favorites[this.moovieKey]) {
+      if (this.favorites[this.moovie.key]) {
         this.heart = true
       }
     }
     if (this.seen != null) {
-      if (this.seen[this.moovieKey]) {
+      if (this.seen[this.moovie.key]) {
         this.seenP = true
       }
     }
     if (this.pend != null) {
-      if (this.pend[this.moovieKey]) {
+      if (this.pend[this.moovie.key]) {
         this.pendP = true
       }
     }
